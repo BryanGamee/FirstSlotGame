@@ -4,26 +4,44 @@
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>Unity WebGL Player | FirstSlotGame</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, shrink-to-fit=yes">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      /* Prevent scrolling */
+      text-align: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    #unity-container {
+      position: relative;
+      width: 100%;
+      max-width: 450px;
+      /* Maximum width */
+      height: 100%;
+      /* Full height */
+      aspect-ratio: auto 1 / 2;
+      /* Automatically maintain aspect ratio */
+    }
+
+    #unity-canvas {
+      width: 100%;
+      height: 100%;
+      background: #231F20;
+    }
+  </style>
   </head>
   <body style="text-align: center; padding: 0; border: 0; margin: 0;">
-    <canvas id="unity-canvas" width=600 height=960 tabindex="-1" style="width: 600px; height: 960px; background: #231F20"></canvas>
+    <div id="unity-container">
+      <canvas id="unity-canvas" tabindex="-1"></canvas>
+    </div>
     <script src="Build/FirstSlotGameTestResponsive.loader.js"></script>
     <script>
-      if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
-        // Mobile device style: fill the whole browser client area with the game canvas:
-        var meta = document.createElement('meta');
-        meta.name = 'viewport';
-        meta.content = 'width=device-width, height=device-height, initial-scale=1.0, user-scalable=no, shrink-to-fit=yes';
-        document.getElementsByTagName('head')[0].appendChild(meta);
-
-        var canvas = document.querySelector("#unity-canvas");
-        canvas.style.width = "100%";
-        canvas.style.height = "100%";
-        canvas.style.position = "fixed";
-
-        document.body.style.textAlign = "left";
-      }
-
       createUnityInstance(document.querySelector("#unity-canvas"), {
         dataUrl: "Build/FirstSlotGameTestResponsive.data",
         frameworkUrl: "Build/FirstSlotGameTestResponsive.framework.js",
